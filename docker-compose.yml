@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:15-alpine
+    container_name: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - ./docker/postgres/init.d:/docker-entrypoint-initdb.d
+      - ./docker/postgres/pgdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: tammy
+      POSTGRES_PASSWORD: tammy_pass
+      POSTGRES_INITDB_ARGS: '--encoding=UTF-8'
+      POSTGRES_DB: tammydb
+    hostname: postgres
+    restart: always
+    user: root

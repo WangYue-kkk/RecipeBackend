@@ -1,0 +1,88 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Ingredient {
+  id: Int!
+  name: String!
+}
+
+type Recipe {
+  id: Int!
+  name: String!
+  imageUrl: String!
+  steps: String
+  type: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  ingredients: [Ingredient!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  id: Int!
+  name: String!
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type SignInResponse {
+  accessToken: String!
+  user: User!
+}
+
+type Query {
+  getRecipes(userId: Int!): [Recipe]!
+  getUser(getUserInput: GetUserInput!): User
+  getIngredients(userId: Int!): [Ingredient]!
+}
+
+input GetUserInput {
+  email: String!
+}
+
+type Mutation {
+  createRecipe(createRecipeInput: CreateRecipeInput!): Recipe!
+  updateRecipe(updateRecipeInput: UpdateRecipeInput!): Recipe!
+  deleteRecipe(id: Int!): Recipe!
+  createUser(createUserInput: CreateUserInput!): User!
+  signIn(signInInput: SignInInput!): SignInResponse!
+}
+
+input CreateRecipeInput {
+  name: String!
+  type: String!
+  imageUrl: String!
+  steps: String
+  userId: Int!
+  ingredients: [CreateIngredientInput!]
+}
+
+input CreateIngredientInput {
+  id: Int!
+}
+
+input UpdateRecipeInput {
+  id: Int!
+  name: String
+  imageUrl: String
+  type: String
+  steps: String
+  ingredients: [CreateIngredientInput!]
+}
+
+input CreateUserInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input SignInInput {
+  email: String!
+  password: String!
+}

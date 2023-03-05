@@ -1,0 +1,10 @@
+{
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+  "[typescript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+      "editor.tabSize": 2,
+  }
+}
